@@ -32,12 +32,16 @@
     "openai",
     "cost-optimization"
   ],
-  "author": "",
+  "author": "Artem Kiziloff <artem.kiziloff@gmail.com> (https://github.com/kizilovv)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/kizilovv/llm-smart-router.git"
   },
+  "bugs": {
+    "url": "https://github.com/kizilovv/llm-smart-router/issues"
+  },
+  "homepage": "https://github.com/kizilovv/llm-smart-router#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.14.9",
