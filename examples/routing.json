@@ -1,0 +1,91 @@
+{
+  "projects": {
+    "marketing": {
+      "chief": "marketing-lead",
+      "aliases": ["marketing", "growth"],
+      "description": "Growth, ads, SEO, content, analytics",
+      "keywords": ["seo", "blog", "ads", "campaign", "analytics", "landing"]
+    },
+    "engineering": {
+      "chief": "eng-lead",
+      "aliases": ["eng", "engineering"],
+      "description": "Product engineering, bugs, features, infra",
+      "keywords": ["bug", "feature", "deploy", "api", "migration", "prod"]
+    }
+  },
+  "agents": [
+    {
+      "name": "seo-agent",
+      "project": "marketing",
+      "description": "On-page SEO audits, meta tags, schema, internal linking",
+      "taskTypes": ["seo-audit", "meta-tags", "sitemap"],
+      "keywords": ["seo", "meta", "sitemap", "schema", "title tag"]
+    },
+    {
+      "name": "blog-agent",
+      "project": "marketing",
+      "description": "Drafts and edits blog posts from briefs",
+      "taskTypes": ["blog-post", "content-brief"],
+      "keywords": ["blog", "post", "article", "content", "write"]
+    },
+    {
+      "name": "fullstack-dev",
+      "project": "engineering",
+      "description": "Implements features end-to-end (UI + API + DB)",
+      "taskTypes": ["feature", "bug-fix", "refactor"],
+      "keywords": ["implement", "fix", "refactor", "feature", "component", "endpoint"]
+    },
+    {
+      "name": "devops",
+      "project": "engineering",
+      "description": "Deployments, CI/CD, infrastructure, monitoring",
+      "taskTypes": ["deploy", "ci", "infra"],
+      "keywords": ["deploy", "pm2", "docker", "nginx", "ci", "pipeline"]
+    },
+    {
+      "name": "triage",
+      "project": "_global",
+      "description": "Conversational replies, small talk, clarifying questions",
+      "keywords": ["hello", "hi", "thanks", "hey"]
+    }
+  ],
+  "taskCategories": [
+    {
+      "id": "conversational",
+      "description": "Small talk / greetings — reply directly, do not route",
+      "routeTo": null,
+      "subAgent": null,
+      "signals": ["hello", "hi ", "thanks", "hey"]
+    },
+    {
+      "id": "production-incident",
+      "description": "Prod is broken — escalate to engineering immediately",
+      "routeTo": "eng-lead",
+      "subAgent": "devops",
+      "signals": ["prod down", "outage", "500 error", "crashloop", "degraded"]
+    }
+  ],
+  "examples": [
+    {
+      "task": "audit meta tags on the pricing page",
+      "route": "seo-agent",
+      "reason": "SEO meta-tag task — specialized agent exists"
+    },
+    {
+      "task": "prod is throwing 500s on checkout",
+      "route": "devops",
+      "reason": "Incident signal + production keyword"
+    },
+    {
+      "task": "hey how's it going",
+      "route": "null",
+      "reason": "Conversational — no routing needed"
+    }
+  ],
+  "rules": {
+    "minConfidence": 0.7,
+    "semanticFallback": true,
+    "useClassification": true,
+    "debug": false
+  }
+}

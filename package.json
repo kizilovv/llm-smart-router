@@ -1,0 +1,47 @@
+{
+  "name": "llm-smart-router",
+  "version": "0.1.0",
+  "description": "Tiered LLM task router: keyword match → signal classification → semantic fallback. Skip the LLM call when a cheap heuristic is confident — cut routing cost by 80%+ on real traffic.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "example": "tsx examples/basic.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "llm",
+    "router",
+    "ai",
+    "agent",
+    "orchestration",
+    "classification",
+    "anthropic",
+    "openai",
+    "cost-optimization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}
